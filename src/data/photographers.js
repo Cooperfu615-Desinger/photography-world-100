@@ -25,7 +25,7 @@ const photographersData = [
             'ko': "안셀 아담스"
         },
         category: {
-            'zh-TW': "風景攝影",
+            'zh-TW': "大地景觀",
             'zh-CN': "风景摄影",
             'en': "Landscape",
             'ja': "風景写真",
@@ -74,11 +74,11 @@ const photographersData = [
             'ko': "앙리 카르티에 브레송"
         },
         category: {
-            'zh-TW': "街頭/紀實",
-            'zh-CN': "街头/纪实",
-            'en': "Street/Documentary",
-            'ja': "ストリート/ドキュメンタリー",
-            'ko': "거리/다큐멘터리"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文纪实",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "現代新聞攝影之父，「決定性瞬間 (The Decisive Moment)」理論的提出者。擅長捕捉幾何構圖與人性瞬間。",
@@ -123,11 +123,11 @@ const photographersData = [
             'ko': "애니 레보비츠"
         },
         category: {
-            'zh-TW': "名人肖像",
-            'zh-CN': "名人肖像",
-            'en': "Celebrity Portrait",
-            'ja': "セレブリティ・ポートレート",
-            'ko': "유명인 초상"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "當代最著名的人像攝影師之一。擅長營造宏大且具戲劇性的場景，將精緻的燈光與豐富色彩結合。",
@@ -172,11 +172,11 @@ const photographersData = [
             'ko': "스티브 맥커리"
         },
         category: {
-            'zh-TW': "人文/旅遊",
-            'zh-CN': "人文/旅游",
-            'en': "Travel/Humanist",
-            'ja': "ヒューマニズム/トラベル",
-            'ko': "인문/여행"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文纪实",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "以鮮豔的色彩和深情的眼神捕捉聞名，代表作《阿富汗女孩》。擅長運用互補色與構圖層次。",
@@ -221,11 +221,11 @@ const photographersData = [
             'ko': "스기모토 히로시"
         },
         category: {
-            'zh-TW': "觀念/藝術",
-            'zh-CN': "观念/艺术",
-            'en': "Conceptual/Fine Art",
-            'ja': "コンセプチュアル/ファインアート",
-            'ko': "관념/예술"
+            'zh-TW': "藝術觀念",
+            'zh-CN': "艺术观念",
+            'en': "Conceptual",
+            'ja': "コンセプチュアル",
+            'ko': "관념 예술"
         },
         style: {
             'zh-TW': "極簡主義大師，探索時間與記憶。代表作《海景》展示了極致的平靜與長曝光技巧。",
@@ -270,11 +270,11 @@ const photographersData = [
             'ko': "모리야마 다이도"
         },
         category: {
-            'zh-TW': "街頭/抓拍",
-            'zh-CN': "街头/抓拍",
-            'en': "Street/Snapshot",
-            'ja': "ストリート/スナップ",
-            'ko': "거리/스냅"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文纪实",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "以「粗顆粒、模糊、失焦 (Are-Bure-Bokeh)」風格聞名。遊蕩於都市街頭捕捉慾望與混亂。",
@@ -319,11 +319,11 @@ const photographersData = [
             'ko': "카와우치 린코"
         },
         category: {
-            'zh-TW': "當代藝術/日常",
-            'zh-CN': "当代艺术/日常",
-            'en': "Contemporary Art/Daily Life",
-            'ja': "現代美術/日常",
-            'ko': "현대 미술/일상"
+            'zh-TW': "藝術觀念",
+            'zh-CN': "艺术观念",
+            'en': "Conceptual",
+            'ja': "コンセプチュアル",
+            'ko': "관념 예술"
         },
         style: {
             'zh-TW': "擅長捕捉日常生活中微小的光影與生命力，照片具有空氣感與透明感。",
@@ -368,11 +368,11 @@ const photographersData = [
             'ko': "우에다 쇼지"
         },
         category: {
-            'zh-TW': "超現實主義",
-            'zh-CN': "超现实主义",
-            'en': "Surrealism",
-            'ja': "シュルレアリスム",
-            'ko': "초현실주의"
+            'zh-TW': "藝術觀念",
+            'zh-CN': "艺术观念",
+            'en': "Conceptual",
+            'ja': "コンセプチュアル",
+            'ko': "관념 예술"
         },
         style: {
             'zh-TW': "以鳥取沙丘為舞台，創造出獨特的「植田調 (Ueda-cho)」，呈現極致的排列美學與幽默感。",
@@ -417,11 +417,11 @@ const photographersData = [
             'ko': "니나가와 미카"
         },
         category: {
-            'zh-TW': "時尚/藝術",
-            'zh-CN': "时尚/艺术",
-            'en': "Fashion/Art",
-            'ja': "ファッション/アート",
-            'ko': "패션/예술"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "極度飽和、鮮豔的色彩，以金魚與花卉為標誌。風格華麗迷幻，融合藝術與流行商業。",
@@ -466,11 +466,11 @@ const photographersData = [
             'ko': "아라키 노부요시"
         },
         category: {
-            'zh-TW': "私攝影",
-            'zh-CN': "私摄影",
-            'en': "I-Photography",
-            'ja': "私写真",
-            'ko': "사사진 (I-Photography)"
+            'zh-TW': "藝術觀念",
+            'zh-CN': "艺术观念",
+            'en': "Conceptual",
+            'ja': "コンセプチュアル",
+            'ko': "관념 예술"
         },
         style: {
             'zh-TW': "多產且具爭議，探討「生與死 (Eros & Thanatos)」。作品直白且充滿情緒張力。",
@@ -515,7 +515,7 @@ const photographersData = [
             'ko': "배병우"
         },
         category: {
-            'zh-TW': "風景攝影",
+            'zh-TW': "大地景觀",
             'zh-CN': "风景摄影",
             'en': "Landscape",
             'ja': "風景写真",
@@ -564,11 +564,11 @@ const photographersData = [
             'ko': "구본창"
         },
         category: {
-            'zh-TW': "純藝術",
-            'zh-CN': "純艺术",
-            'en': "Fine Art",
-            'ja': "ファインアート",
-            'ko': "순수 예술"
+            'zh-TW': "藝術觀念",
+            'zh-CN': "艺术观念",
+            'en': "Conceptual",
+            'ja': "コンセプチュアル",
+            'ko': "관념 예술"
         },
         style: {
             'zh-TW': "以拍攝朝鮮白瓷聞名，作品色調極淡，捕捉物體隨時間流逝的脆弱感與本質。",
@@ -613,8 +613,8 @@ const photographersData = [
             'ko': "아타 킴"
         },
         category: {
-            'zh-TW': "觀念攝影",
-            'zh-CN': "观念摄影",
+            'zh-TW': "藝術觀念",
+            'zh-CN': "艺术观念",
             'en': "Conceptual",
             'ja': "コンセプチュアル",
             'ko': "관념 예술"
@@ -662,11 +662,11 @@ const photographersData = [
             'ko': "한영수"
         },
         category: {
-            'zh-TW': "紀實/街頭",
-            'zh-CN': "纪实/街头",
-            'en': "Documentary/Street",
-            'ja': "ドキュメンタリー/ストリート",
-            'ko': "다큐멘터리/거리"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文纪实",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "捕捉了首爾戰後重建時期的時尚與生機。構圖精確且具備獨特的現代美學視角。",
@@ -711,11 +711,11 @@ const photographersData = [
             'ko': "이정진"
         },
         category: {
-            'zh-TW': "風景/材質",
-            'zh-CN': "风景/材质",
-            'en': "Landscape/Texture",
-            'ja': "風景/テクスチャ",
-            'ko': "풍경/질감"
+            'zh-TW': "大地景觀",
+            'zh-CN': "大地景观",
+            'en': "Landscape",
+            'ja': "風景写真",
+            'ko': "풍경 사진"
         },
         style: {
             'zh-TW': "將感光乳劑塗在韓紙上，結合攝影與繪畫質感，作品充滿荒涼、安靜與詩意。",
@@ -760,11 +760,11 @@ const photographersData = [
             'ko': "리처드 아베돈"
         },
         category: {
-            'zh-TW': "人像/時尚",
-            'zh-CN': "人像/时尚",
-            'en': "Portrait/Fashion",
-            'ja': "ポートレート/ファッション",
-            'ko': "인물/패션"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "定義了 20 世紀的人像美學。以簡約的純白背景、極高對比度及對拍攝對象情緒的精準捕捉著稱。",
@@ -809,11 +809,11 @@ const photographersData = [
             'ko': "유서프 카쉬"
         },
         category: {
-            'zh-TW': "經典肖像",
-            'zh-CN': "经典肖像",
-            'en': "Classic Portrait",
-            'ja': "クラシック・ポートレート",
-            'ko': "고전적 초상"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "被譽為「光影大師」，擅長使用戲劇性的燈光（Karsh Light）凸顯人物的力量與偉大。",
@@ -858,11 +858,11 @@ const photographersData = [
             'ko': "피터 린드버그"
         },
         category: {
-            'zh-TW': "時尚/寫實",
-            'zh-CN': "时尚/写实",
-            'en': "Fashion/Realism",
-            'ja': "ファッション/リアリズム",
-            'ko': "패션/사실주의"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "反對過度修圖，強調自然的美感。作品帶有強烈的電影敘事感與深邃的黑白影調。",
@@ -907,11 +907,11 @@ const photographersData = [
             'ko': "어빙 펜"
         },
         category: {
-            'zh-TW': "時尚/靜物",
-            'zh-CN': "时尚/静物",
-            'en': "Fashion/Still Life",
-            'ja': "ファッション/静物",
-            'ko': "패션/정물"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "以冷靜且嚴謹的視角著稱。常將人物置於狹窄的角落（Corner Portraits）拍攝，創造心理張力。",
@@ -956,11 +956,11 @@ const photographersData = [
             'ko': "신디 셔먼"
         },
         category: {
-            'zh-TW': "觀念自拍",
-            'zh-CN': "观念自拍",
-            'en': "Conceptual Self-Portrait",
-            'ja': "コンセプチュアル・セルフポートレート",
-            'ko': "관념적 자화상"
+            'zh-TW': "藝術觀念",
+            'zh-CN': "艺术观念",
+            'en': "Conceptual",
+            'ja': "コンセプチュアル",
+            'ko': "관념 예술"
         },
         style: {
             'zh-TW': "當代藝術大師，透過扮裝演繹各種社會角色，探討身份認同、媒體刻板印象與女性凝視。",
@@ -1005,11 +1005,11 @@ const photographersData = [
             'ko': "다이안 아버스"
         },
         category: {
-            'zh-TW': "紀實人像",
-            'zh-CN': "纪实人像",
-            'en': "Documentary Portrait",
-            'ja': "ドキュメンタリー・ポートレート",
-            'ko': "다큐멘터리 인물"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "專注於拍攝社會邊緣人與奇特人物。作品帶有一種直接且令人震撼的凝視。",
@@ -1054,11 +1054,11 @@ const photographersData = [
             'ko': "헬무트 뉴튼"
         },
         category: {
-            'zh-TW': "時尚/人體",
-            'zh-CN': "时尚/人体",
-            'en': "Fashion/Nude",
-            'ja': "ファッション/ヌード",
-            'ko': "패션/누드"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "以震撼、具爭議性的時尚人像著稱。作品常探討權力與女性力量，充滿視覺張力。",
@@ -1104,10 +1104,10 @@ const photographersData = [
         },
         category: {
             'zh-TW': "人文紀實",
-            'zh-CN': "人文纪实",
-            'en': "Humanist/Documentary",
-            'ja': "ヒューマニズム・ドキュメンタリー",
-            'ko': "인본주의 다큐멘터리"
+            'zh-CN': "人文紀實",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "以宏大的黑白紀實攝影呈現人類苦難與自然壯麗。影像充滿詩意與神聖感。",
@@ -1152,11 +1152,11 @@ const photographersData = [
             'ko': "플라톤"
         },
         category: {
-            'zh-TW': "政治/名人",
-            'zh-CN': "政治/名人",
-            'en': "Political/Portrait",
-            'ja': "政治家/名人ポートレート",
-            'ko': "정치/유명인 초상"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "使用極廣角鏡頭貼近主體拍攝，創造出具壓迫感、張力強烈且親密的英雄式人像。",
@@ -1201,11 +1201,11 @@ const photographersData = [
             'ko': "마틴 숄러"
         },
         category: {
-            'zh-TW': "特寫人像",
-            'zh-CN': "特写人像",
-            'en': "Macro Portrait",
-            'ja': "マクロ・ポートレート",
-            'ko': "접사 인물"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "以「大頭照」系列聞名。無論名流或平民都使用相同的光影與構圖，消除階級感。",
@@ -1250,11 +1250,11 @@ const photographersData = [
             'ko': "팀 워커"
         },
         category: {
-            'zh-TW': "時尚/超現實",
-            'zh-CN': "时尚/超现实",
-            'en': "Fashion/Surrealism",
-            'ja': "ファッション/シュルレアリスム",
-            'ko': "패션/초현실주의"
+            'zh-TW': "藝術觀念",
+            'zh-CN': "藝術觀念",
+            'en': "Conceptual",
+            'ja': "コンセプチュアル",
+            'ko': "관념 예술"
         },
         style: {
             'zh-TW': "時尚界的夢想家。作品充滿超現實主義與童話色彩，以巨大的道具與精緻的置景聞名。",
@@ -1299,11 +1299,11 @@ const photographersData = [
             'ko': "파올로 로베르시"
         },
         category: {
-            'zh-TW': "繪畫風格",
-            'zh-CN': "绘画风格",
-            'en': "Pictorialist Fashion",
-            'ja': "ファッション・ピクトリアリスム",
-            'ko': "회화적 패션"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "作品帶有一種如繪畫般的朦朧美感與憂鬱氣息。常使用大畫幅拍立得開發獨特質地。",
@@ -1348,11 +1348,11 @@ const photographersData = [
             'ko': "윌리엄 이글스턴"
         },
         category: {
-            'zh-TW': "色彩/藝術",
-            'zh-CN': "色彩/艺术",
-            'en': "Color/Fine Art",
-            'ja': "カラー・ファインアート",
-            'ko': "컬러/순수 예술"
+            'zh-TW': "藝術觀念",
+            'zh-CN': "藝術觀念",
+            'en': "Conceptual",
+            'ja': "コンセプチュアル",
+            'ko': "관념 예술"
         },
         style: {
             'zh-TW': "現代彩色攝影之父。將平凡、世俗的日常場景賦予了藝術價值，色彩飽和且具備震撼力。",
@@ -1397,11 +1397,11 @@ const photographersData = [
             'ko': "스티븐 쇼어"
         },
         category: {
-            'zh-TW': "新彩色/地景",
-            'zh-CN': "新彩色/地景",
-            'en': "New Color/Landscape",
-            'ja': "ニューカラー・ランドスケープ",
-            'ko': "뉴 컬러 풍경"
+            'zh-TW': "大地景觀",
+            'zh-CN': "大地景观",
+            'en': "Landscape",
+            'ja': "風景写真",
+            'ko': "풍경 사진"
         },
         style: {
             'zh-TW': "新彩色攝影的領軍人物。以平凡的美國地景為對象，展現出冷靜、客觀且具備層次的色彩之美。",
@@ -1446,11 +1446,11 @@ const photographersData = [
             'ko': "알렉스 웹"
         },
         category: {
-            'zh-TW': "街頭/色彩",
-            'zh-CN': "街头/色彩",
-            'en': "Street/Color",
-            'ja': "カラー・ストリート",
-            'ko': "거리/컬러"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文紀實",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "以充滿複雜構圖與強烈陰影的彩色街頭攝影聞名。他的畫面具備高度的層次感與視覺飽和度。",
@@ -1495,11 +1495,11 @@ const photographersData = [
             'ko': "비비안 마이어"
         },
         category: {
-            'zh-TW': "街頭攝影",
-            'zh-CN': "街头摄影",
-            'en': "Street Photography",
-            'ja': "ストリート写真",
-            'ko': "거리 사진"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文紀實",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "傳奇性的業餘攝影師。身兼保姆職務，在業餘時間於芝加哥與紐約街頭捕捉了大量精彩的人文瞬間，其作品在去世後才被發現並震驚世界。",
@@ -1593,11 +1593,11 @@ const photographersData = [
             'ko': "요제프 쿠델카"
         },
         category: {
-            'zh-TW': "紀實/流亡",
-            'zh-CN': "纪实/流亡",
-            'en': "Documentary/Exile",
-            'ja': "ドキュメンタリー/亡命",
-            'ko': "다큐멘터리/망명"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文紀實",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "瑪格南大師。紀錄了 1968 年布拉格之春及吉普賽人的生活。作品充滿強烈的孤獨感、史詩般的構圖與黑白的視覺衝擊。",
@@ -1642,11 +1642,11 @@ const photographersData = [
             'ko': "호판 (하번)"
         },
         category: {
-            'zh-TW': "街頭/光影",
-            'zh-CN': "街头/光影",
-            'en': "Street/Light & Shadow",
-            'ja': "ストリート/光と影",
-            'ko': "거리/빛과 그림자"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文紀實",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "一代宗師，以黑白攝影捕捉 50-60 年代香港的老街風景。擅長運用極致的光影對比與煙霧營造出如電影般的戲劇氛圍。",
@@ -1691,11 +1691,11 @@ const photographersData = [
             'ko': "개리 위노그랜드"
         },
         category: {
-            'zh-TW': "紀實/街頭",
-            'zh-CN': "纪实/街头",
-            'en': "Documentary/Street",
-            'ja': "ドキュメンタリー/ストリート",
-            'ko': "다큐멘터리/거리"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文纪实",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "街頭攝影的多產大師。以隨性、傾斜且充滿能量的抓拍捕捉美國都市的動脈，認為攝影是為了看照片中的世界會是什麼樣子。",
@@ -1740,11 +1740,11 @@ const photographersData = [
             'ko': "사울 레이터"
         },
         category: {
-            'zh-TW': "色彩/街頭",
-            'zh-CN': "色彩/街头",
-            'en': "Color/Street",
-            'ja': "カラー・ストリート",
-            'ko': "컬러/거리"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文纪实",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "彩色攝影與抽象街頭攝影的先驅。他的作品帶有一種優雅的繪畫質感，常透過窗戶、倒影與遮擋物呈現詩意的紐約場景。",
@@ -1789,11 +1789,11 @@ const photographersData = [
             'ko': "고든 파크스"
         },
         category: {
-            'zh-TW': "紀實/社會",
-            'zh-CN': "纪实/社会",
-            'en': "Documentary/Social",
-            'ja': "ドキュメンタリー/社会問題",
-            'ko': "다큐멘터리/사회"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文紀實",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "以攝影為武器對抗社會不公。他對美國非裔生活、民權運動與時尚界的紀錄具備深刻的尊嚴與力量。",
@@ -1838,11 +1838,11 @@ const photographersData = [
             'ko': "메리 엘렌 마크"
         },
         category: {
-            'zh-TW': "紀實人像",
-            'zh-CN': "纪实人像",
-            'en': "Documentary Portrait",
-            'ja': "ドキュメンタリー・ポートレート",
-            'ko': "다큐멘터리 인물"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "致力於拍攝社會弱勢與畸零人群。她的作品充滿強烈的同理心、人文深度與對人類心靈韌性的探索。",
@@ -1887,11 +1887,11 @@ const photographersData = [
             'ko': "그레고리 크루드슨"
         },
         category: {
-            'zh-TW': "觀念/佈景",
-            'zh-CN': "观念/佈景",
-            'en': "Conceptual/Staged",
-            'ja': "コンセプチュアル/演出写真",
-            'ko': "관념적/스테이지드"
+            'zh-TW': "藝術觀念",
+            'zh-CN': "藝術觀念",
+            'en': "Conceptual",
+            'ja': "コンセプチュアル",
+            'ko': "관념 예술"
         },
         style: {
             'zh-TW': "當代大師，以如好萊塢電影般精緻佈置的靜止場景聞名。作品探討美國郊區生活的寂寞、不安與超現實氣息。",
@@ -1936,11 +1936,11 @@ const photographersData = [
             'ko': "리네케 데이크스트라"
         },
         category: {
-            'zh-TW': "當代人像",
-            'zh-CN': "当代人像",
-            'en': "Contemporary Portrait",
-            'ja': "コンテンポラリー・ポートレート",
-            'ko': "현대 인물"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "以大畫幅人像系列聞名。捕捉青少年、士兵或剛分娩的母親，展現出人在過渡期中的脆弱、真實與沈靜質感。",
@@ -1985,11 +1985,11 @@ const photographersData = [
             'ko': "난 골딘"
         },
         category: {
-            'zh-TW': "私攝影/紀實",
-            'zh-CN': "私摄影/纪实",
-            'en': "Snapshots/Documentary",
-            'ja': "プライベート・ドキュメンタリー",
-            'ko': "사사진/다큐멘터리"
+            'zh-TW': "藝術觀念",
+            'zh-CN': "藝術觀念",
+            'en': "Conceptual",
+            'ja': "コンセプチュアル",
+            'ko': "관념 예술"
         },
         style: {
             'zh-TW': "其作品集《性依賴的敘事曲》是私攝影的輝煌傑作。以極其親密且不加修飾的視角紀錄了她的朋友、親人與次文化群體的真實生活。",
@@ -2034,11 +2034,11 @@ const photographersData = [
             'ko': "빌 커닝햄"
         },
         category: {
-            'zh-TW': "街頭時尚",
-            'zh-CN': "街头时尚",
-            'en': "Street Fashion",
-            'ja': "ストリート・ファッション",
-            'ko': "거리 패션"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "紐約街頭時尚攝影的靈魂人物。他以一種近乎學者式的熱情，在街頭捕捉普通人的穿搭美學，認為街道就是最好的伸展台。",
@@ -2083,11 +2083,11 @@ const photographersData = [
             'ko': "로버트 메이플소프"
         },
         category: {
-            'zh-TW': "人像/靜物",
-            'zh-CN': "人像/静物",
-            'en': "Portrait/Still Life",
-            'ja': "ポートレート/静物",
-            'ko': "인물/정물"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "以雕塑般的黑白人體、花卉與名人肖像著稱。作品追求形式上的極致完美、光影的精確控制，常具備強烈的衝擊力。",
@@ -2132,11 +2132,11 @@ const photographersData = [
             'ko': "샐리 맨"
         },
         category: {
-            'zh-TW': "人像/風景",
-            'zh-CN': "人像/风景",
-            'en': "Portrait/Landscape",
-            'ja': "ポートレート/風景",
-            'ko': "인물/풍경"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "代表作《親密家庭 (Immediate Family)》，以濕版攝影等古典工藝拍攝她的孩子。作品帶有一種原始、神秘且略顯憂鬱的南方氛圍。",
@@ -2181,11 +2181,11 @@ const photographersData = [
             'ko': "에드워드 웨스턴"
         },
         category: {
-            'zh-TW': "純攝影/靜物",
-            'zh-CN': "纯摄影/静物",
-            'en': "Straight/Still Life",
-            'ja': "ストレート写真/静物",
-            'ko': "스트레이트 사진/정물"
+            'zh-TW': "大地景觀",
+            'zh-CN': "大地景观",
+            'en': "Landscape",
+            'ja': "風景写真",
+            'ko': "풍경 사진"
         },
         style: {
             'zh-TW': "f/64 群組的核心成員。他讓日常物體（如青椒、貝殼）呈現出抽象的形體美與質感細節，重新定義了攝影的視覺語言。",
@@ -2230,11 +2230,11 @@ const photographersData = [
             'ko': "도로시아 랭"
         },
         category: {
-            'zh-TW': "紀實/社會",
-            'zh-CN': "纪实/社会",
-            'en': "Documentary/Social",
-            'ja': "ドキュメンタリー/社会状況",
-            'ko': "다큐멘터리/사회"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文纪实",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "大蕭條時期的紀錄者。代表作《移民媽媽》，以深刻的同情心紀錄了美國農民的苦難與人類尊嚴。",
@@ -2328,11 +2328,11 @@ const photographersData = [
             'ko': "토마츠 쇼메이"
         },
         category: {
-            'zh-TW': "日本紀實",
-            'zh-CN': "日本纪实",
-            'en': "Japanese Documentary",
-            'ja': "日本のドキュメンタリー",
-            'ko': "일본 다큐멘터리"
+            'zh-TW': "人文紀實",
+            'zh-CN': "人文紀實",
+            'en': "Documentary",
+            'ja': "ドキュメンタリー",
+            'ko': "다큐멘터리"
         },
         style: {
             'zh-TW': "日本戰後最具影響力的攝影師之一。透過影像探討戰後日本的社會變革、美軍佔領與當代文明的衝突，風格強烈且多變。",
@@ -2377,11 +2377,11 @@ const photographersData = [
             'ko': "이시우치 미야코"
         },
         category: {
-            'zh-TW': "當代藝術/記憶",
-            'zh-CN': "当代艺术/记忆",
-            'en': "Contemporary Art/Memory",
-            'ja': "コンテンポラリー・アート/記憶",
-            'ko': "현대 미술/기억"
+            'zh-TW': "藝術觀念",
+            'zh-CN': "藝術觀念",
+            'en': "Conceptual",
+            'ja': "コンセプチュアル",
+            'ko': "관념 예술"
         },
         style: {
             'zh-TW': "以探討身體、時間與物件中的記憶著稱。代表作《廣島》紀錄了原爆遺物，透過極其細膩精緻的影像賦予舊物新的生命力。",
@@ -2426,11 +2426,11 @@ const photographersData = [
             'ko': "닉 나이트"
         },
         category: {
-            'zh-TW': "時尚/科技",
-            'zh-CN': "时尚/科技",
-            'en': "Fashion/Tech",
-            'ja': "ファッション/テクノロジー",
-            'ko': "패션/테크"
+            'zh-TW': "人物肖像",
+            'zh-CN': "人物肖像",
+            'en': "Portrait",
+            'ja': "ポートレート",
+            'ko': "인물 초상"
         },
         style: {
             'zh-TW': "時尚攝影界的實驗者。他不斷挑戰界限，結合最新科技（如 3D 掃描、數位後期處理）與卓越的佈光，創造出極具未來感的視覺體驗。",
