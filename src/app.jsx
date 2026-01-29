@@ -2,6 +2,9 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { Camera, Search, Globe, X, ChevronRight, Aperture, Focus, Maximize, ChevronDown, ArrowUp } from 'lucide-react';
 import photographersData from './data/photographers.js';
 import techniquesData from './data/techniques.js';
+import focalLengthGuide from './data/focalLengthGuide.js';
+import apertureGuide from './data/apertureGuide.js';
+import cameraBrands from './data/cameraBrands.js';
 
 /**
  * Photography World 100 - 世界百大攝影師資料庫
@@ -125,6 +128,8 @@ export default function PhotographyApp() {
   const [selectedPhotographer, setSelectedPhotographer] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [techniqueSubView, setTechniqueSubView] = useState('techniques'); // 'techniques', 'focal-length', 'aperture', 'camera-brands'
+  const [selectedTechnique, setSelectedTechnique] = useState(null);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const langMenuRef = useRef(null);
@@ -192,6 +197,26 @@ export default function PhotographyApp() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // 輔助函數：根據類別返回對應的顏色類別
+  const getCategoryColor = (category) => {
+    const colorMap = {
+      '曝光': 'bg-blue-500',
+      '構圖': 'bg-green-500',
+      '光線': 'bg-yellow-500',
+      '色彩': 'bg-purple-500',
+      '後製': 'bg-pink-500',
+      '器材': 'bg-indigo-500',
+      '技術': 'bg-red-500'
+    };
+    return colorMap[category] || 'bg-gray-500';
+  };
+
+  // 輔助函數：截斷文字
+  const truncateText = (text, maxLength) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
   };
 
   return (
@@ -275,8 +300,8 @@ export default function PhotographyApp() {
                     key={cat}
                     onClick={() => { setSelectedCategory(cat); scrollToTop(); }}
                     className={`whitespace-nowrap px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wider uppercase transition-all duration-300 ${isActive
-                        ? 'bg-black text-white shadow-md'
-                        : 'bg-white text-gray-400 border border-gray-100 hover:border-gray-300 hover:text-gray-600'
+                      ? 'bg-black text-white shadow-md'
+                      : 'bg-white text-gray-400 border border-gray-100 hover:border-gray-300 hover:text-gray-600'
                       }`}
                   >
                     {displayLabel}
@@ -436,33 +461,386 @@ export default function PhotographyApp() {
 
         {/* VIEW: TECHNIQUES */}
         {view === 'techniques' && (
-          <div className="animate-fade-in max-w-3xl mx-auto">
-            <div className="space-y-8">
-              {filteredTechniques.map((tech) => (
-                <div key={tech.id} className="bg-white border-l-4 border-gray-100 p-8 hover:border-black transition-all duration-500 shadow-sm hover:shadow-xl rounded-r-sm group">
-                  <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-2xl font-serif font-bold text-gray-900 leading-none">
-                      {t(tech.term)}
-                    </h3>
-                    <span className="text-[9px] font-black uppercase tracking-widest bg-gray-50 px-3 py-1.5 text-gray-400 rounded-full group-hover:bg-black group-hover:text-white transition-all">
-                      {tech.category}
-                    </span>
-                  </div>
-                  <p className="text-gray-500 leading-relaxed text-base md:text-lg font-light">
-                    {t(tech.desc)}
-                  </p>
-                </div>
-              ))}
-
-              {filteredTechniques.length === 0 && (
-                <div className="text-center py-32 animate-fade-in">
-                  <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-50 rounded-full mb-6">
-                    <Focus size={32} className="text-gray-200" />
-                  </div>
-                  <p className="text-gray-400 font-medium">{ui.noTechniques}</p>
-                </div>
-              )}
+          <div className="animate-fade-in">
+            {/* Sub-Tab Navigation */}
+            <div className="flex justify-center gap-4 mb-12 flex-wrap">
+              <button
+                onClick={() => setTechniqueSubView('techniques')}
+                className={`px-6 py-2 text-sm font-bold tracking-wider uppercase transition-all duration-300 ${techniqueSubView === 'techniques'
+                    ? 'bg-black text-white shadow-md rounded-full'
+                    : 'text-gray-400 hover:text-gray-600'
+                  }`}
+              >
+                {lang === 'zh-TW' ? '技法辭典' : lang === 'zh-CN' ? '技法辞典' : lang === 'ja' ? '技法辞典' : lang === 'ko' ? '기법 사전' : 'Techniques'}
+              </button>
+              <button
+                onClick={() => setTechniqueSubView('focal-length')}
+                className={`px-6 py-2 text-sm font-bold tracking-wider uppercase transition-all duration-300 ${techniqueSubView === 'focal-length'
+                    ? 'bg-black text-white shadow-md rounded-full'
+                    : 'text-gray-400 hover:text-gray-600'
+                  }`}
+              >
+                {lang === 'zh-TW' ? '焦距指南' : lang === 'zh-CN' ? '焦距指南' : lang === 'ja' ? '焦点距離ガイド' : lang === 'ko' ? '초점 거리 가이드' : 'Focal Length'}
+              </button>
+              <button
+                onClick={() => setTechniqueSubView('aperture')}
+                className={`px-6 py-2 text-sm font-bold tracking-wider uppercase transition-all duration-300 ${techniqueSubView === 'aperture'
+                    ? 'bg-black text-white shadow-md rounded-full'
+                    : 'text-gray-400 hover:text-gray-600'
+                  }`}
+              >
+                {lang === 'zh-TW' ? '光圈指南' : lang === 'zh-CN' ? '光圈指南' : lang === 'ja' ? '絞りガイド' : lang === 'ko' ? '조리개 가이드' : 'Aperture'}
+              </button>
+              <button
+                onClick={() => setTechniqueSubView('camera-brands')}
+                className={`px-6 py-2 text-sm font-bold tracking-wider uppercase transition-all duration-300 ${techniqueSubView === 'camera-brands'
+                    ? 'bg-black text-white shadow-md rounded-full'
+                    : 'text-gray-400 hover:text-gray-600'
+                  }`}
+              >
+                {lang === 'zh-TW' ? '相機品牌' : lang === 'zh-CN' ? '相机品牌' : lang === 'ja' ? 'カメラブランド' : lang === 'ko' ? '카메라 브랜드' : 'Camera Brands'}
+              </button>
             </div>
+
+            {/* 技法辭典卡片 */}
+            {techniqueSubView === 'techniques' && (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {filteredTechniques.map((tech) => (
+                    <div
+                      key={tech.id}
+                      onClick={() => setSelectedTechnique(tech)}
+                      className="bg-white border border-gray-100 rounded-lg p-6 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
+                    >
+                      <div className={`absolute left-0 top-0 w-1 h-full ${getCategoryColor(tech.category)} scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top`}></div>
+                      <div className={`inline-block ${getCategoryColor(tech.category)} text-white text-[9px] font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider`}>
+                        {tech.category}
+                      </div>
+                      <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-black transition-colors leading-tight">
+                        {t(tech.term)}
+                      </h3>
+                      <p className="text-sm text-gray-400 line-clamp-3 mb-4 leading-relaxed">
+                        {truncateText(t(tech.desc), 100)}
+                      </p>
+                      <div className="flex items-center text-[10px] font-black tracking-widest text-gray-300 group-hover:text-black transition-all uppercase">
+                        {lang === 'zh-TW' ? '查看詳情' : lang === 'zh-CN' ? '查看详情' : lang === 'ja' ? '詳細を見る' : lang === 'ko' ? '상세 보기' : 'View Details'}
+                        <ChevronRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {filteredTechniques.length === 0 && (
+                  <div className="text-center py-32 animate-fade-in">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-50 rounded-full mb-6">
+                      <Focus size={32} className="text-gray-200" />
+                    </div>
+                    <p className="text-gray-400 font-medium">{ui.noTechniques}</p>
+                  </div>
+                )}
+              </>
+            )}
+
+            {/* 焦距指南卡片 */}
+            {techniqueSubView === 'focal-length' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {focalLengthGuide.map((fl) => (
+                  <div
+                    key={fl.id}
+                    onClick={() => setSelectedTechnique(fl)}
+                    className="bg-white border border-gray-100 rounded-lg p-6 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
+                  >
+                    <div className="absolute left-0 top-0 w-1 h-full bg-indigo-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+                    <div className="inline-block bg-indigo-500 text-white text-[9px] font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
+                      {fl.range}
+                    </div>
+                    <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-black transition-colors leading-tight">
+                      {t(fl.type)}
+                    </h3>
+                    <p className="text-sm text-gray-400 mb-2">
+                      <span className="font-bold text-gray-600">{lang === 'zh-TW' ? '視角' : lang === 'zh-CN' ? '视角' : lang === 'ja' ? '視野角' : lang === 'ko' ? '시야각' : 'Angle'}:</span> {fl.angleOfView}
+                    </p>
+                    <p className="text-sm text-gray-400 line-clamp-2 mb-4 leading-relaxed">
+                      {truncateText(t(fl.commonUses), 60)}
+                    </p>
+                    <div className="flex items-center text-[10px] font-black tracking-widest text-gray-300 group-hover:text-black transition-all uppercase">
+                      {lang === 'zh-TW' ? '查看詳情' : lang === 'zh-CN' ? '查看详情' : lang === 'ja' ? '詳細を見る' : lang === 'ko' ? '상세 보기' : 'View Details'}
+                      <ChevronRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* 光圈指南卡片 */}
+            {techniqueSubView === 'aperture' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {apertureGuide.map((ap) => (
+                  <div
+                    key={ap.id}
+                    onClick={() => setSelectedTechnique(ap)}
+                    className="bg-white border border-gray-100 rounded-lg p-6 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
+                  >
+                    <div className="absolute left-0 top-0 w-1 h-full bg-amber-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+                    <div className="inline-block bg-amber-500 text-white text-[9px] font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
+                      {ap.aperture}
+                    </div>
+                    <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-black transition-colors leading-tight">
+                      {t(ap.depthOfField)} {lang === 'zh-TW' ? '景深' : lang === 'zh-CN' ? '景深' : lang === 'ja' ? '被写界深度' : lang === 'ko' ? '피사계 심도' : 'DOF'}
+                    </h3>
+                    <p className="text-sm text-gray-400 mb-2">
+                      <span className="font-bold text-gray-600">{lang === 'zh-TW' ? '進光量' : lang === 'zh-CN' ? '进光量' : lang === 'ja' ? '光量' : lang === 'ko' ? '광량' : 'Light'}:</span> {t(ap.lightIntake)}
+                    </p>
+                    <p className="text-sm text-gray-400 line-clamp-2 mb-4 leading-relaxed">
+                      {truncateText(t(ap.commonUses), 60)}
+                    </p>
+                    <div className="flex items-center text-[10px] font-black tracking-widest text-gray-300 group-hover:text-black transition-all uppercase">
+                      {lang === 'zh-TW' ? '查看詳情' : lang === 'zh-CN' ? '查看详情' : lang === 'ja' ? '詳細を見る' : lang === 'ko' ? '상세 보기' : 'View Details'}
+                      <ChevronRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* 相機品牌卡片 */}
+            {techniqueSubView === 'camera-brands' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {cameraBrands.map((brand) => (
+                  <div
+                    key={brand.id}
+                    onClick={() => setSelectedTechnique(brand)}
+                    className="bg-white border border-gray-100 rounded-lg p-6 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
+                  >
+                    <div className="absolute left-0 top-0 w-1 h-full bg-rose-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+                    <div className="inline-block bg-rose-500 text-white text-[9px] font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
+                      {brand.brand}
+                    </div>
+                    <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-black transition-colors leading-tight">
+                      {t(brand.colorScience)}
+                    </h3>
+                    <p className="text-sm text-gray-400 mb-2">
+                      <span className="font-bold text-gray-600">{lang === 'zh-TW' ? '影像風格' : lang === 'zh-CN' ? '影像风格' : lang === 'ja' ? '画像スタイル' : lang === 'ko' ? '이미지 스타일' : 'Style'}:</span> {t(brand.imageStyle)}
+                    </p>
+                    <p className="text-sm text-gray-400 line-clamp-2 mb-4 leading-relaxed">
+                      {truncateText(t(brand.signature), 60)}
+                    </p>
+                    <div className="flex items-center text-[10px] font-black tracking-widest text-gray-300 group-hover:text-black transition-all uppercase">
+                      {lang === 'zh-TW' ? '查看詳情' : lang === 'zh-CN' ? '查看详情' : lang === 'ja' ? '詳細を見る' : lang === 'ko' ? '상세 보기' : 'View Details'}
+                      <ChevronRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Modal 詳細說明 - 通用於所有四種類型 */}
+            {selectedTechnique && (
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in px-4"
+                onClick={() => setSelectedTechnique(null)}
+              >
+                <div
+                  className="bg-white rounded-lg max-w-3xl w-full p-8 md:p-12 shadow-2xl animate-scale-in relative max-h-[90vh] overflow-y-auto"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    onClick={() => setSelectedTechnique(null)}
+                    className="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors hover:rotate-90 duration-300"
+                  >
+                    <X size={24} />
+                  </button>
+
+                  {/* 技法辭典 Modal */}
+                  {selectedTechnique.category && (
+                    <>
+                      <div className={`inline-block ${getCategoryColor(selectedTechnique.category)} text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider`}>
+                        {selectedTechnique.category}
+                      </div>
+                      <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
+                        {t(selectedTechnique.term)}
+                      </h2>
+                      <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+                        {t(selectedTechnique.desc)}
+                      </p>
+                    </>
+                  )}
+
+                  {/* 焦距指南 Modal */}
+                  {selectedTechnique.range && selectedTechnique.angleOfView && (
+                    <>
+                      <div className="inline-block bg-indigo-500 text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider">
+                        {selectedTechnique.range}
+                      </div>
+                      <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
+                        {t(selectedTechnique.type)}
+                      </h2>
+
+                      <div className="grid md:grid-cols-2 gap-6 mb-8">
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                            {lang === 'zh-TW' ? '視角範圍' : lang === 'zh-CN' ? '视角范围' : lang === 'ja' ? '視野角範囲' : lang === 'ko' ? '시야각 범위' : 'Angle of View'}
+                          </p>
+                          <p className="text-lg font-bold text-gray-900">{selectedTechnique.angleOfView}</p>
+                        </div>
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                            {lang === 'zh-TW' ? '常見用途' : lang === 'zh-CN' ? '常见用途' : lang === 'ja' ? '一般的な用途' : lang === 'ko' ? '일반적인 용도' : 'Common Uses'}
+                          </p>
+                          <p className="text-sm text-gray-700">{t(selectedTechnique.commonUses)}</p>
+                        </div>
+                      </div>
+
+                      <div className="mb-6">
+                        <h3 className="text-lg font-bold mb-3 text-gray-900">
+                          {lang === 'zh-TW' ? '視覺效果' : lang === 'zh-CN' ? '视觉效果' : lang === 'ja' ? '視覚効果' : lang === 'ko' ? '시각 효과' : 'Visual Effect'}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.visualEffect)}</p>
+                      </div>
+
+                      <div className="mb-6">
+                        <h3 className="text-lg font-bold mb-3 text-gray-900">
+                          {lang === 'zh-TW' ? '詳細說明' : lang === 'zh-CN' ? '详细说明' : lang === 'ja' ? '詳細説明' : lang === 'ko' ? '상세 설명' : 'Description'}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.description)}</p>
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div>
+                          <h3 className="text-sm font-bold mb-3 text-green-600 uppercase tracking-wider">
+                            {lang === 'zh-TW' ? '✓ 優點' : lang === 'zh-CN' ? '✓ 优点' : lang === 'ja' ? '✓ 利点' : lang === 'ko' ? '✓ 장점' : '✓ Pros'}
+                          </h3>
+                          <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.pros)}</p>
+                        </div>
+                        <div>
+                          <h3 className="text-sm font-bold mb-3 text-red-600 uppercase tracking-wider">
+                            {lang === 'zh-TW' ? '✗ 缺點' : lang === 'zh-CN' ? '✗ 缺点' : lang === 'ja' ? '✗ 欠点' : lang === 'ko' ? '✗ 단점' : '✗ Cons'}
+                          </h3>
+                          <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.cons)}</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {/* 光圈指南 Modal */}
+                  {selectedTechnique.aperture && selectedTechnique.depthOfField && (
+                    <>
+                      <div className="inline-block bg-amber-500 text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider">
+                        {selectedTechnique.aperture}
+                      </div>
+                      <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
+                        {t(selectedTechnique.depthOfField)} {lang === 'zh-TW' ? '景深' : lang === 'zh-CN' ? '景深' : lang === 'ja' ? '被写界深度' : lang === 'ko' ? '피사계 심도' : 'Depth of Field'}
+                      </h2>
+
+                      <div className="grid md:grid-cols-2 gap-6 mb-8">
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                            {lang === 'zh-TW' ? '進光量' : lang === 'zh-CN' ? '进光量' : lang === 'ja' ? '光量' : lang === 'ko' ? '광량' : 'Light Intake'}
+                          </p>
+                          <p className="text-lg font-bold text-gray-900">{t(selectedTechnique.lightIntake)}</p>
+                        </div>
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                            {lang === 'zh-TW' ? '常見用途' : lang === 'zh-CN' ? '常见用途' : lang === 'ja' ? '一般的な用途' : lang === 'ko' ? '일반적인 용도' : 'Common Uses'}
+                          </p>
+                          <p className="text-sm text-gray-700">{t(selectedTechnique.commonUses)}</p>
+                        </div>
+                      </div>
+
+                      <div className="mb-6">
+                        <h3 className="text-lg font-bold mb-3 text-gray-900">
+                          {lang === 'zh-TW' ? '視覺效果' : lang === 'zh-CN' ? '视觉效果' : lang === 'ja' ? '視覚効果' : lang === 'ko' ? '시각 효과' : 'Visual Effect'}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.visualEffect)}</p>
+                      </div>
+
+                      <div className="mb-6">
+                        <h3 className="text-lg font-bold mb-3 text-gray-900">
+                          {lang === 'zh-TW' ? '詳細說明' : lang === 'zh-CN' ? '详细说明' : lang === 'ja' ? '詳細説明' : lang === 'ko' ? '상세 설명' : 'Description'}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.description)}</p>
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div>
+                          <h3 className="text-sm font-bold mb-3 text-green-600 uppercase tracking-wider">
+                            {lang === 'zh-TW' ? '✓ 優點' : lang === 'zh-CN' ? '✓ 优点' : lang === 'ja' ? '✓ 利点' : lang === 'ko' ? '✓ 장점' : '✓ Pros'}
+                          </h3>
+                          <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.pros)}</p>
+                        </div>
+                        <div>
+                          <h3 className="text-sm font-bold mb-3 text-red-600 uppercase tracking-wider">
+                            {lang === 'zh-TW' ? '✗ 缺點' : lang === 'zh-CN' ? '✗ 缺点' : lang === 'ja' ? '✗ 欠点' : lang === 'ko' ? '✗ 단점' : '✗ Cons'}
+                          </h3>
+                          <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.cons)}</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {/* 相機品牌 Modal */}
+                  {selectedTechnique.brand && selectedTechnique.colorScience && (
+                    <>
+                      <div className="inline-block bg-rose-500 text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider">
+                        {selectedTechnique.brand}
+                      </div>
+                      <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
+                        {t(selectedTechnique.colorScience)}
+                      </h2>
+
+                      <div className="grid md:grid-cols-2 gap-6 mb-8">
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                            {lang === 'zh-TW' ? '影像風格' : lang === 'zh-CN' ? '影像风格' : lang === 'ja' ? '画像スタイル' : lang === 'ko' ? '이미지 스타일' : 'Image Style'}
+                          </p>
+                          <p className="text-sm text-gray-700">{t(selectedTechnique.imageStyle)}</p>
+                        </div>
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                            {lang === 'zh-TW' ? '最適合拍攝' : lang === 'zh-CN' ? '最适合拍摄' : lang === 'ja' ? '最適な撮影' : lang === 'ko' ? '가장 적합한 촬영' : 'Best For'}
+                          </p>
+                          <p className="text-sm text-gray-700">{t(selectedTechnique.bestFor)}</p>
+                        </div>
+                      </div>
+
+                      <div className="mb-6">
+                        <h3 className="text-lg font-bold mb-3 text-gray-900">
+                          {lang === 'zh-TW' ? '品牌標誌性特色' : lang === 'zh-CN' ? '品牌标志性特色' : lang === 'ja' ? 'ブランドシグネチャー' : lang === 'ko' ? '브랜드 시그니처' : 'Brand Signature'}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.signature)}</p>
+                      </div>
+
+                      <div className="mb-6">
+                        <h3 className="text-lg font-bold mb-3 text-gray-900">
+                          {lang === 'zh-TW' ? '詳細說明' : lang === 'zh-CN' ? '详细说明' : lang === 'ja' ? '詳細説明' : lang === 'ko' ? '상세 설명' : 'Description'}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.description)}</p>
+                      </div>
+
+                      <div className="mb-6">
+                        <h3 className="text-lg font-bold mb-3 text-gray-900">
+                          {lang === 'zh-TW' ? '色彩特性' : lang === 'zh-CN' ? '色彩特性' : lang === 'ja' ? '色特性' : lang === 'ko' ? '색상 특성' : 'Color Profile'}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.colorProfile)}</p>
+                      </div>
+
+                      <div className="bg-gray-50 p-4 rounded-lg">
+                        <h3 className="text-sm font-bold mb-3 text-gray-900 uppercase tracking-wider">
+                          {lang === 'zh-TW' ? '代表性機型' : lang === 'zh-CN' ? '代表性机型' : lang === 'ja' ? '代表的なモデル' : lang === 'ko' ? '대표 모델' : 'Iconic Models'}
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedTechnique.iconicModels && selectedTechnique.iconicModels.map((model, index) => (
+                            <span key={index} className="bg-white text-gray-700 text-xs font-bold px-3 py-1 rounded-full border border-gray-200">
+                              {model}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </main>
@@ -501,6 +879,13 @@ export default function PhotographyApp() {
         }
         .animate-fade-in {
           animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes scaleIn {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        .animate-scale-in {
+          animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .animate-fade-in-up {
           animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
