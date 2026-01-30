@@ -524,7 +524,10 @@ export default function PhotographyApp() {
                     >
                       <div className={`absolute left-0 top-0 w-1 h-full ${getCategoryColor(tech.category)} scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top`}></div>
                       <div className={`inline-block ${getCategoryColor(tech.category)} text-white text-[9px] font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider`}>
-                        {tech.category}
+                        {tech.category === 'Optics'
+                          ? (lang === 'zh-TW' ? '專有名詞' : lang === 'zh-CN' ? '专有名词' : lang === 'ja' ? '専門用語' : lang === 'ko' ? '전문 용어' : 'Technical Terms')
+                          : tech.category
+                        }
                       </div>
                       <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-black transition-colors leading-tight">
                         {t(tech.term)}
@@ -669,14 +672,38 @@ export default function PhotographyApp() {
             {selectedTechnique.category && (
               <>
                 <div className={`inline-block ${getCategoryColor(selectedTechnique.category)} text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider`}>
-                  {selectedTechnique.category}
+                  {selectedTechnique.category === 'Optics'
+                    ? (lang === 'zh-TW' ? '專有名詞' : lang === 'zh-CN' ? '专有名词' : lang === 'ja' ? '専門用語' : lang === 'ko' ? '전문 용어' : 'Technical Terms')
+                    : selectedTechnique.category
+                  }
                 </div>
                 <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
                   {t(selectedTechnique.term)}
                 </h2>
-                <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+                <p className="text-gray-600 leading-relaxed text-base md:text-lg mb-8">
                   {t(selectedTechnique.desc)}
                 </p>
+
+                {/* 詳細說明區塊 */}
+                {selectedTechnique.detailedExplanation && (
+                  <div className="prose prose-sm max-w-none">
+                    <div
+                      className="text-gray-700 leading-relaxed space-y-4"
+                      dangerouslySetInnerHTML={{
+                        __html: t(selectedTechnique.detailedExplanation)
+                          .replace(/\*\*(.*?)\*\*/g, '<strong class="text-gray-900 font-bold">$1</strong>')
+                          .replace(/•/g, '<span class="inline-block w-1.5 h-1.5 bg-gray-400 rounded-full mr-2"></span>')
+                          .split('\n').map(line => {
+                            if (line.trim() === '') return '<br/>';
+                            if (line.includes('✗')) return `<p class="flex items-start gap-2"><span class="text-red-600 font-bold flex-shrink-0">✗</span><span>${line.replace('✗', '').trim()}</span></p>`;
+                            if (line.includes('✓')) return `<p class="flex items-start gap-2"><span class="text-green-600 font-bold flex-shrink-0">✓</span><span>${line.replace('✓', '').trim()}</span></p>`;
+                            if (line.startsWith('•')) return `<p class="flex items-start gap-2 ml-4"><span class="inline-block w-1.5 h-1.5 bg-gray-400 rounded-full mr-2 mt-2 flex-shrink-0"></span><span>${line.replace('•', '').trim()}</span></p>`;
+                            return `<p>${line}</p>`;
+                          }).join('')
+                      }}
+                    />
+                  </div>
+                )}
               </>
             )}
 
