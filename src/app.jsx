@@ -147,6 +147,17 @@ export default function PhotographyApp() {
   }, []);
 
   useEffect(() => {
+    if (selectedTechnique) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedTechnique]);
+
+  useEffect(() => {
     function handleClickOutside(event) {
       if (langMenuRef.current && !langMenuRef.current.contains(event.target)) {
         setIsLangMenuOpen(false);
@@ -222,25 +233,24 @@ export default function PhotographyApp() {
   return (
     <div className={`min-h-screen bg-[#FDFBF7] text-[#333] font-sans selection:bg-gray-200`}>
 
-      {/* HEADER & STICKY CONTAINER */}
       <div className="sticky top-0 z-40 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
-        <header className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => { setView('photographers'); setSelectedPhotographer(null); setSelectedCategory('All'); setSearchTerm(''); scrollToTop(); }}>
-            <div className="w-10 h-10 bg-black text-white flex items-center justify-center rounded-full shadow-lg">
-              <Camera size={20} strokeWidth={1.5} />
+        <header className="max-w-6xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-2 md:gap-3 cursor-pointer" onClick={() => { setView('photographers'); setSelectedPhotographer(null); setSelectedCategory('All'); setSearchTerm(''); scrollToTop(); }}>
+            <div className="w-8 h-8 md:w-10 md:h-10 bg-black text-white flex items-center justify-center rounded-full shadow-lg">
+              <Camera size={18} strokeWidth={1.5} />
             </div>
             <div>
-              <h1 className="text-lg font-serif font-bold tracking-wider uppercase leading-none mb-1">
+              <h1 className="text-sm md:text-lg font-serif font-bold tracking-wider uppercase leading-none mb-1">
                 {ui.title}
               </h1>
-              <p className="text-[9px] tracking-[0.2em] text-gray-500 uppercase leading-none">
+              <p className="hidden sm:block text-[9px] tracking-[0.2em] text-gray-500 uppercase leading-none">
                 {ui.subtitle}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            <nav className="hidden md:flex gap-6 text-sm font-medium tracking-wide">
+          <div className="flex items-center gap-3 md:gap-6">
+            <nav className="flex gap-4 md:gap-6 text-[11px] md:text-sm font-medium tracking-wide">
               <button
                 onClick={() => { setView('photographers'); setSelectedPhotographer(null); }}
                 className={`${view === 'photographers' ? 'text-black border-b-2 border-black' : 'text-gray-400 hover:text-gray-600'} pb-1 transition-all`}
@@ -467,8 +477,8 @@ export default function PhotographyApp() {
               <button
                 onClick={() => setTechniqueSubView('techniques')}
                 className={`px-6 py-2 text-sm font-bold tracking-wider uppercase transition-all duration-300 ${techniqueSubView === 'techniques'
-                    ? 'bg-black text-white shadow-md rounded-full'
-                    : 'text-gray-400 hover:text-gray-600'
+                  ? 'bg-black text-white shadow-md rounded-full'
+                  : 'text-gray-400 hover:text-gray-600'
                   }`}
               >
                 {lang === 'zh-TW' ? '技法辭典' : lang === 'zh-CN' ? '技法辞典' : lang === 'ja' ? '技法辞典' : lang === 'ko' ? '기법 사전' : 'Techniques'}
@@ -476,8 +486,8 @@ export default function PhotographyApp() {
               <button
                 onClick={() => setTechniqueSubView('focal-length')}
                 className={`px-6 py-2 text-sm font-bold tracking-wider uppercase transition-all duration-300 ${techniqueSubView === 'focal-length'
-                    ? 'bg-black text-white shadow-md rounded-full'
-                    : 'text-gray-400 hover:text-gray-600'
+                  ? 'bg-black text-white shadow-md rounded-full'
+                  : 'text-gray-400 hover:text-gray-600'
                   }`}
               >
                 {lang === 'zh-TW' ? '焦距指南' : lang === 'zh-CN' ? '焦距指南' : lang === 'ja' ? '焦点距離ガイド' : lang === 'ko' ? '초점 거리 가이드' : 'Focal Length'}
@@ -485,8 +495,8 @@ export default function PhotographyApp() {
               <button
                 onClick={() => setTechniqueSubView('aperture')}
                 className={`px-6 py-2 text-sm font-bold tracking-wider uppercase transition-all duration-300 ${techniqueSubView === 'aperture'
-                    ? 'bg-black text-white shadow-md rounded-full'
-                    : 'text-gray-400 hover:text-gray-600'
+                  ? 'bg-black text-white shadow-md rounded-full'
+                  : 'text-gray-400 hover:text-gray-600'
                   }`}
               >
                 {lang === 'zh-TW' ? '光圈指南' : lang === 'zh-CN' ? '光圈指南' : lang === 'ja' ? '絞りガイド' : lang === 'ko' ? '조리개 가이드' : 'Aperture'}
@@ -494,8 +504,8 @@ export default function PhotographyApp() {
               <button
                 onClick={() => setTechniqueSubView('camera-brands')}
                 className={`px-6 py-2 text-sm font-bold tracking-wider uppercase transition-all duration-300 ${techniqueSubView === 'camera-brands'
-                    ? 'bg-black text-white shadow-md rounded-full'
-                    : 'text-gray-400 hover:text-gray-600'
+                  ? 'bg-black text-white shadow-md rounded-full'
+                  : 'text-gray-400 hover:text-gray-600'
                   }`}
               >
                 {lang === 'zh-TW' ? '相機品牌' : lang === 'zh-CN' ? '相机品牌' : lang === 'ja' ? 'カメラブランド' : lang === 'ko' ? '카메라 브랜드' : 'Camera Brands'}
@@ -634,216 +644,217 @@ export default function PhotographyApp() {
               </div>
             )}
 
-            {/* Modal 詳細說明 - 通用於所有四種類型 */}
-            {selectedTechnique && (
-              <div
-                className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in px-4"
-                onClick={() => setSelectedTechnique(null)}
-              >
-                <div
-                  className="bg-white rounded-lg max-w-3xl w-full p-8 md:p-12 shadow-2xl animate-scale-in relative max-h-[90vh] overflow-y-auto"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <button
-                    onClick={() => setSelectedTechnique(null)}
-                    className="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors hover:rotate-90 duration-300"
-                  >
-                    <X size={24} />
-                  </button>
-
-                  {/* 技法辭典 Modal */}
-                  {selectedTechnique.category && (
-                    <>
-                      <div className={`inline-block ${getCategoryColor(selectedTechnique.category)} text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider`}>
-                        {selectedTechnique.category}
-                      </div>
-                      <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
-                        {t(selectedTechnique.term)}
-                      </h2>
-                      <p className="text-gray-600 leading-relaxed text-base md:text-lg">
-                        {t(selectedTechnique.desc)}
-                      </p>
-                    </>
-                  )}
-
-                  {/* 焦距指南 Modal */}
-                  {selectedTechnique.range && selectedTechnique.angleOfView && (
-                    <>
-                      <div className="inline-block bg-indigo-500 text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider">
-                        {selectedTechnique.range}
-                      </div>
-                      <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
-                        {t(selectedTechnique.type)}
-                      </h2>
-
-                      <div className="grid md:grid-cols-2 gap-6 mb-8">
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                            {lang === 'zh-TW' ? '視角範圍' : lang === 'zh-CN' ? '视角范围' : lang === 'ja' ? '視野角範囲' : lang === 'ko' ? '시야각 범위' : 'Angle of View'}
-                          </p>
-                          <p className="text-lg font-bold text-gray-900">{selectedTechnique.angleOfView}</p>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                            {lang === 'zh-TW' ? '常見用途' : lang === 'zh-CN' ? '常见用途' : lang === 'ja' ? '一般的な用途' : lang === 'ko' ? '일반적인 용도' : 'Common Uses'}
-                          </p>
-                          <p className="text-sm text-gray-700">{t(selectedTechnique.commonUses)}</p>
-                        </div>
-                      </div>
-
-                      <div className="mb-6">
-                        <h3 className="text-lg font-bold mb-3 text-gray-900">
-                          {lang === 'zh-TW' ? '視覺效果' : lang === 'zh-CN' ? '视觉效果' : lang === 'ja' ? '視覚効果' : lang === 'ko' ? '시각 효과' : 'Visual Effect'}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.visualEffect)}</p>
-                      </div>
-
-                      <div className="mb-6">
-                        <h3 className="text-lg font-bold mb-3 text-gray-900">
-                          {lang === 'zh-TW' ? '詳細說明' : lang === 'zh-CN' ? '详细说明' : lang === 'ja' ? '詳細説明' : lang === 'ko' ? '상세 설명' : 'Description'}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.description)}</p>
-                      </div>
-
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div>
-                          <h3 className="text-sm font-bold mb-3 text-green-600 uppercase tracking-wider">
-                            {lang === 'zh-TW' ? '✓ 優點' : lang === 'zh-CN' ? '✓ 优点' : lang === 'ja' ? '✓ 利点' : lang === 'ko' ? '✓ 장점' : '✓ Pros'}
-                          </h3>
-                          <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.pros)}</p>
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-bold mb-3 text-red-600 uppercase tracking-wider">
-                            {lang === 'zh-TW' ? '✗ 缺點' : lang === 'zh-CN' ? '✗ 缺点' : lang === 'ja' ? '✗ 欠点' : lang === 'ko' ? '✗ 단점' : '✗ Cons'}
-                          </h3>
-                          <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.cons)}</p>
-                        </div>
-                      </div>
-                    </>
-                  )}
-
-                  {/* 光圈指南 Modal */}
-                  {selectedTechnique.aperture && selectedTechnique.depthOfField && (
-                    <>
-                      <div className="inline-block bg-amber-500 text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider">
-                        {selectedTechnique.aperture}
-                      </div>
-                      <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
-                        {t(selectedTechnique.depthOfField)} {lang === 'zh-TW' ? '景深' : lang === 'zh-CN' ? '景深' : lang === 'ja' ? '被写界深度' : lang === 'ko' ? '피사계 심도' : 'Depth of Field'}
-                      </h2>
-
-                      <div className="grid md:grid-cols-2 gap-6 mb-8">
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                            {lang === 'zh-TW' ? '進光量' : lang === 'zh-CN' ? '进光量' : lang === 'ja' ? '光量' : lang === 'ko' ? '광량' : 'Light Intake'}
-                          </p>
-                          <p className="text-lg font-bold text-gray-900">{t(selectedTechnique.lightIntake)}</p>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                            {lang === 'zh-TW' ? '常見用途' : lang === 'zh-CN' ? '常见用途' : lang === 'ja' ? '一般的な用途' : lang === 'ko' ? '일반적인 용도' : 'Common Uses'}
-                          </p>
-                          <p className="text-sm text-gray-700">{t(selectedTechnique.commonUses)}</p>
-                        </div>
-                      </div>
-
-                      <div className="mb-6">
-                        <h3 className="text-lg font-bold mb-3 text-gray-900">
-                          {lang === 'zh-TW' ? '視覺效果' : lang === 'zh-CN' ? '视觉效果' : lang === 'ja' ? '視覚効果' : lang === 'ko' ? '시각 효과' : 'Visual Effect'}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.visualEffect)}</p>
-                      </div>
-
-                      <div className="mb-6">
-                        <h3 className="text-lg font-bold mb-3 text-gray-900">
-                          {lang === 'zh-TW' ? '詳細說明' : lang === 'zh-CN' ? '详细说明' : lang === 'ja' ? '詳細説明' : lang === 'ko' ? '상세 설명' : 'Description'}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.description)}</p>
-                      </div>
-
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div>
-                          <h3 className="text-sm font-bold mb-3 text-green-600 uppercase tracking-wider">
-                            {lang === 'zh-TW' ? '✓ 優點' : lang === 'zh-CN' ? '✓ 优点' : lang === 'ja' ? '✓ 利点' : lang === 'ko' ? '✓ 장점' : '✓ Pros'}
-                          </h3>
-                          <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.pros)}</p>
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-bold mb-3 text-red-600 uppercase tracking-wider">
-                            {lang === 'zh-TW' ? '✗ 缺點' : lang === 'zh-CN' ? '✗ 缺点' : lang === 'ja' ? '✗ 欠点' : lang === 'ko' ? '✗ 단점' : '✗ Cons'}
-                          </h3>
-                          <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.cons)}</p>
-                        </div>
-                      </div>
-                    </>
-                  )}
-
-                  {/* 相機品牌 Modal */}
-                  {selectedTechnique.brand && selectedTechnique.colorScience && (
-                    <>
-                      <div className="inline-block bg-rose-500 text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider">
-                        {selectedTechnique.brand}
-                      </div>
-                      <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
-                        {t(selectedTechnique.colorScience)}
-                      </h2>
-
-                      <div className="grid md:grid-cols-2 gap-6 mb-8">
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                            {lang === 'zh-TW' ? '影像風格' : lang === 'zh-CN' ? '影像风格' : lang === 'ja' ? '画像スタイル' : lang === 'ko' ? '이미지 스타일' : 'Image Style'}
-                          </p>
-                          <p className="text-sm text-gray-700">{t(selectedTechnique.imageStyle)}</p>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                            {lang === 'zh-TW' ? '最適合拍攝' : lang === 'zh-CN' ? '最适合拍摄' : lang === 'ja' ? '最適な撮影' : lang === 'ko' ? '가장 적합한 촬영' : 'Best For'}
-                          </p>
-                          <p className="text-sm text-gray-700">{t(selectedTechnique.bestFor)}</p>
-                        </div>
-                      </div>
-
-                      <div className="mb-6">
-                        <h3 className="text-lg font-bold mb-3 text-gray-900">
-                          {lang === 'zh-TW' ? '品牌標誌性特色' : lang === 'zh-CN' ? '品牌标志性特色' : lang === 'ja' ? 'ブランドシグネチャー' : lang === 'ko' ? '브랜드 시그니처' : 'Brand Signature'}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.signature)}</p>
-                      </div>
-
-                      <div className="mb-6">
-                        <h3 className="text-lg font-bold mb-3 text-gray-900">
-                          {lang === 'zh-TW' ? '詳細說明' : lang === 'zh-CN' ? '详细说明' : lang === 'ja' ? '詳細説明' : lang === 'ko' ? '상세 설명' : 'Description'}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.description)}</p>
-                      </div>
-
-                      <div className="mb-6">
-                        <h3 className="text-lg font-bold mb-3 text-gray-900">
-                          {lang === 'zh-TW' ? '色彩特性' : lang === 'zh-CN' ? '色彩特性' : lang === 'ja' ? '色特性' : lang === 'ko' ? '색상 특성' : 'Color Profile'}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.colorProfile)}</p>
-                      </div>
-
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <h3 className="text-sm font-bold mb-3 text-gray-900 uppercase tracking-wider">
-                          {lang === 'zh-TW' ? '代表性機型' : lang === 'zh-CN' ? '代表性机型' : lang === 'ja' ? '代表的なモデル' : lang === 'ko' ? '대표 모델' : 'Iconic Models'}
-                        </h3>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedTechnique.iconicModels && selectedTechnique.iconicModels.map((model, index) => (
-                            <span key={index} className="bg-white text-gray-700 text-xs font-bold px-3 py-1 rounded-full border border-gray-200">
-                              {model}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
-            )}
           </div>
         )}
       </main>
+
+      {/* MODALS - Moved to root level for correct positioning and full-screen overlay */}
+      {selectedTechnique && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in px-4"
+          onClick={() => setSelectedTechnique(null)}
+        >
+          <div
+            className="bg-white rounded-lg max-w-3xl w-full p-8 md:p-12 shadow-2xl animate-scale-in relative max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedTechnique(null)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors hover:rotate-90 duration-300"
+            >
+              <X size={24} />
+            </button>
+
+            {/* 技法辭典 Modal */}
+            {selectedTechnique.category && (
+              <>
+                <div className={`inline-block ${getCategoryColor(selectedTechnique.category)} text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider`}>
+                  {selectedTechnique.category}
+                </div>
+                <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
+                  {t(selectedTechnique.term)}
+                </h2>
+                <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+                  {t(selectedTechnique.desc)}
+                </p>
+              </>
+            )}
+
+            {/* 焦距指南 Modal */}
+            {selectedTechnique.range && selectedTechnique.angleOfView && (
+              <>
+                <div className="inline-block bg-indigo-500 text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider">
+                  {selectedTechnique.range}
+                </div>
+                <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
+                  {t(selectedTechnique.type)}
+                </h2>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                      {lang === 'zh-TW' ? '視角範圍' : lang === 'zh-CN' ? '视角范围' : lang === 'ja' ? '視野角範囲' : lang === 'ko' ? '시야각 범위' : 'Angle of View'}
+                    </p>
+                    <p className="text-lg font-bold text-gray-900">{selectedTechnique.angleOfView}</p>
+                  </div>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                      {lang === 'zh-TW' ? '常見用途' : lang === 'zh-CN' ? '常见用途' : lang === 'ja' ? '一般的な用途' : lang === 'ko' ? '일반적인 용도' : 'Common Uses'}
+                    </p>
+                    <p className="text-sm text-gray-700">{t(selectedTechnique.commonUses)}</p>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-bold mb-3 text-gray-900">
+                    {lang === 'zh-TW' ? '視覺效果' : lang === 'zh-CN' ? '视觉效果' : lang === 'ja' ? '視覚効果' : lang === 'ko' ? '시각 효과' : 'Visual Effect'}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.visualEffect)}</p>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-bold mb-3 text-gray-900">
+                    {lang === 'zh-TW' ? '詳細說明' : lang === 'zh-CN' ? '详细说明' : lang === 'ja' ? '詳細説明' : lang === 'ko' ? '상세 설명' : 'Description'}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.description)}</p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="text-sm font-bold mb-3 text-green-600 uppercase tracking-wider">
+                      {lang === 'zh-TW' ? '✓ 優點' : lang === 'zh-CN' ? '✓ 优点' : lang === 'ja' ? '✓ 利点' : lang === 'ko' ? '✓ 장점' : '✓ Pros'}
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.pros)}</p>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold mb-3 text-red-600 uppercase tracking-wider">
+                      {lang === 'zh-TW' ? '✗ 缺點' : lang === 'zh-CN' ? '✗ 缺点' : lang === 'ja' ? '✗ 欠点' : lang === 'ko' ? '✗ 단점' : '✗ Cons'}
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.cons)}</p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* 光圈指南 Modal */}
+            {selectedTechnique.aperture && selectedTechnique.depthOfField && (
+              <>
+                <div className="inline-block bg-amber-500 text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider">
+                  {selectedTechnique.aperture}
+                </div>
+                <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
+                  {t(selectedTechnique.depthOfField)} {lang === 'zh-TW' ? '景深' : lang === 'zh-CN' ? '景深' : lang === 'ja' ? '被写界深度' : lang === 'ko' ? '피사계 심도' : 'Depth of Field'}
+                </h2>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                      {lang === 'zh-TW' ? '進光量' : lang === 'zh-CN' ? '进光量' : lang === 'ja' ? '光量' : lang === 'ko' ? '광량' : 'Light Intake'}
+                    </p>
+                    <p className="text-lg font-bold text-gray-900">{t(selectedTechnique.lightIntake)}</p>
+                  </div>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                      {lang === 'zh-TW' ? '常見用途' : lang === 'zh-CN' ? '常见用途' : lang === 'ja' ? '一般的な用途' : lang === 'ko' ? '일반적인 용도' : 'Common Uses'}
+                    </p>
+                    <p className="text-sm text-gray-700">{t(selectedTechnique.commonUses)}</p>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-bold mb-3 text-gray-900">
+                    {lang === 'zh-TW' ? '視覺效果' : lang === 'zh-CN' ? '视觉效果' : lang === 'ja' ? '視覚効果' : lang === 'ko' ? '시각 효과' : 'Visual Effect'}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.visualEffect)}</p>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-bold mb-3 text-gray-900">
+                    {lang === 'zh-TW' ? '詳細說明' : lang === 'zh-CN' ? '详细说明' : lang === 'ja' ? '詳細説明' : lang === 'ko' ? '상세 설명' : 'Description'}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.description)}</p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="text-sm font-bold mb-3 text-green-600 uppercase tracking-wider">
+                      {lang === 'zh-TW' ? '✓ 優點' : lang === 'zh-CN' ? '✓ 优点' : lang === 'ja' ? '✓ 利点' : lang === 'ko' ? '✓ 장점' : '✓ Pros'}
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.pros)}</p>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold mb-3 text-red-600 uppercase tracking-wider">
+                      {lang === 'zh-TW' ? '✗ 缺點' : lang === 'zh-CN' ? '✗ 缺点' : lang === 'ja' ? '✗ 欠点' : lang === 'ko' ? '✗ 단점' : '✗ Cons'}
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{t(selectedTechnique.cons)}</p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* 相機品牌 Modal */}
+            {selectedTechnique.brand && selectedTechnique.colorScience && (
+              <>
+                <div className="inline-block bg-rose-500 text-white text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider">
+                  {selectedTechnique.brand}
+                </div>
+                <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
+                  {t(selectedTechnique.colorScience)}
+                </h2>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                      {lang === 'zh-TW' ? '影像風格' : lang === 'zh-CN' ? '影像风格' : lang === 'ja' ? '画像スタイル' : lang === 'ko' ? '이미지 스타일' : 'Image Style'}
+                    </p>
+                    <p className="text-sm text-gray-700">{t(selectedTechnique.imageStyle)}</p>
+                  </div>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                      {lang === 'zh-TW' ? '最適合拍攝' : lang === 'zh-CN' ? '最适合拍摄' : lang === 'ja' ? '最適な撮影' : lang === 'ko' ? '가장 적합한 촬영' : 'Best For'}
+                    </p>
+                    <p className="text-sm text-gray-700">{t(selectedTechnique.bestFor)}</p>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-bold mb-3 text-gray-900">
+                    {lang === 'zh-TW' ? '品牌標誌性特色' : lang === 'zh-CN' ? '品牌标志性特色' : lang === 'ja' ? 'ブランドシグネチャー' : lang === 'ko' ? '브랜드 시그니처' : 'Brand Signature'}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.signature)}</p>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-bold mb-3 text-gray-900">
+                    {lang === 'zh-TW' ? '詳細說明' : lang === 'zh-CN' ? '详细说明' : lang === 'ja' ? '詳細説明' : lang === 'ko' ? '상세 설명' : 'Description'}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.description)}</p>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-bold mb-3 text-gray-900">
+                    {lang === 'zh-TW' ? '色彩特性' : lang === 'zh-CN' ? '色彩特性' : lang === 'ja' ? '色特性' : lang === 'ko' ? '색상 특성' : 'Color Profile'}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">{t(selectedTechnique.colorProfile)}</p>
+                </div>
+
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <h3 className="text-sm font-bold mb-3 text-gray-900 uppercase tracking-wider">
+                    {lang === 'zh-TW' ? '代表性機型' : lang === 'zh-CN' ? '代表性机型' : lang === 'ja' ? '代表的なモデル' : lang === 'ko' ? '대표 모델' : 'Iconic Models'}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedTechnique.iconicModels && selectedTechnique.iconicModels.map((model, index) => (
+                      <span key={index} className="bg-white text-gray-700 text-xs font-bold px-3 py-1 rounded-full border border-gray-200">
+                        {model}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* FOOTER */}
       <footer className="bg-white border-t border-gray-50 py-20 text-center text-gray-300">
